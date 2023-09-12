@@ -31,7 +31,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8 offset-2 border p-4 mt-4">
+            <div class="col-md-8 offset-2 border p-4 mt-4 rounded">
                 <h2 class="text-center mb-4">Weather Report</h2>
                 <form action="" method="POST">
 
@@ -50,8 +50,8 @@
                     <?php
                     if ($message != '') {
                         echo '<h3>Report:</h3>';
-                        echo '<h5>'.$temperature.'&deg; </h5>';
-                        echo '<h5>'.$message.'</h5>';
+                        echo '<h5 class="font-weight-bold">'.$temperature.'&deg; </h5>';
+                        echo '<p class="font-weight-bold">'.$message.'</p>';
                     }
                     ?>
                 </div>

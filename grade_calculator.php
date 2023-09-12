@@ -40,7 +40,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8 offset-2 border p-4 mt-4">
+            <div class="col-md-8 offset-2 border p-4 mt-4 rounded">
                 <h2 class="text-center mb-4">Grade Calculator</h2>
                 <form action="" method="POST">
 
