@@ -13,9 +13,22 @@
     <?php
     $temperature = '';
     $message = '';
+    $type = '';
+    $report = '';
+    $original_temp = '';
 
     if (isset($_POST) && isset($_POST['submit_btn'])) {
         $temperature = floatval($_POST["temperature"]);
+        $type = $_POST["type"];
+
+        $original_temp = $temperature;
+
+        if ($type == 'fahrenheit') {
+            $temperature = ($original_temp - 32) * 5 / 9;
+            $report = $temperature.'&deg; Fahrenheit';
+        }else{
+            $report = $temperature.'&deg; Celcius';
+        }
 
         if ($temperature <= 0) {
             $message = "It's freezing!";
@@ -35,9 +48,25 @@
                 <h2 class="text-center mb-4">Weather Report</h2>
                 <form action="" method="POST">
 
-                    <label for="temp">Enter Temperature In Celsius:</label>
+                    <label for="temp">Enter Temperature :</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="temp" name="temperature" placeholder="Enter Temperature" require value="<?php echo $temperature; ?>">
+                        <input type="text" class="form-control" id="temp" name="temperature" placeholder="Enter Temperature" required value="<?php echo $original_temp; ?>">
+                    </div>
+
+                    <label for="temp">Temperature Type :</label>
+                    <div class="temp_type">
+                        <div class="form-check form-check-reverse">
+                            <input class="form-check-input" type="radio" name="type" value="celcius" id="celcius" <?php echo $type == 'celcius' ? 'checked' : 'checked'; ?>>
+                            <label class="form-check-label" for="celcius">
+                                Celsius
+                            </label>
+                        </div>
+                        <div class="form-check form-check-reverse">
+                            <input class="form-check-input" type="radio" name="type" value="fahrenheit" id="fahrenheit" <?php echo $type == 'fahrenheit' ? 'checked' : ''; ?>>
+                            <label class="form-check-label" for="fahrenheit">
+                                Fahrenheit
+                            </label>
+                        </div>
                     </div>
 
                     <div class="text-center mt-2">
@@ -50,8 +79,8 @@
                     <?php
                     if ($message != '') {
                         echo '<h3>Report:</h3>';
-                        echo '<h5 class="font-weight-bold">'.$temperature.'&deg; </h5>';
-                        echo '<p class="font-weight-bold">'.$message.'</p>';
+                        echo '<h5 class="font-weight-bold">' . $report . '&deg; </h5>';
+                        echo '<p class="font-weight-bold">' . $message . '</p>';
                     }
                     ?>
                 </div>
